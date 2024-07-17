@@ -1,6 +1,6 @@
 import time
 
-from selenium.common.exceptions import NoSuchElementException, WebDriverException
+from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
@@ -24,10 +24,10 @@ class StepHelper:
             how = By.CSS_SELECTOR
         return how
 
-    def specified_element_is_present(self, locator, time=3):
+    def specified_element_is_present(self, locator, wait_time=3):
         # Checks if a specified element is present on the page within a given timeframe.
         try:
-            WebDriverWait(self.wd, time).until(
+            WebDriverWait(self.wd, wait_time).until(
                 EC.presence_of_element_located((self.get_how(locator), locator)))
         except NoSuchElementException:
             return False
@@ -41,20 +41,20 @@ class StepHelper:
             EC.visibility_of_element_located((self.get_how(locator), locator)))
         return element
 
-    def specified_element_is_not_present(self, locator, waitingTime=3):
+    def specified_element_is_not_present(self, locator, wait_time=3):
         # Waits to ensure a specified element is not present or becomes invisible.
         time.sleep(1)
-        WebDriverWait(self.wd, waitingTime).until(
+        WebDriverWait(self.wd, wait_time).until(
             EC.invisibility_of_element_located((self.get_how(locator), locator)))
 
-    def click_on_element(self, locator, pause_before_click=0.5, scrollInToView=False):
+    def click_on_element(self, locator, pause_before_click=0.5, scroll_into_view=False):
         # Clicks on a specified element, optionally scrolling into view and pausing before clicking.
         WebDriverWait(self.wd, 10).until(
             EC.visibility_of_element_located((self.get_how(locator), locator)))
         element = WebDriverWait(self.wd, 10).until(
             EC.element_to_be_clickable((self.get_how(locator), locator))
         )
-        if scrollInToView:
+        if scroll_into_view:
             self.wd.execute_script(
                 "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });", element)
             time.sleep(2)
@@ -75,27 +75,27 @@ class StepHelper:
             EC.presence_of_all_elements_located((self.get_how(locator), locator)))
         return self.wd.find_elements(by=by, value=locator)
 
-    def get_element_text(self, locator, scrollInToView=False):
+    def get_element_text(self, locator, scroll_into_view=False):
         # Retrieves the text from a specified element, optionally scrolling it into view.
         element = WebDriverWait(self.wd, 10).until(
             EC.visibility_of_element_located((self.get_how(locator), locator)))
-        if scrollInToView:
+        if scroll_into_view:
             self.wd.execute_script(
                 "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });", element)
             time.sleep(2)
         return element.text
 
-    def get_element_attribute_value(self, locator, attribute, scrollInToView=False):
+    def get_element_attribute_value(self, locator, attribute, scroll_into_view=False):
         # Retrieves the value of a specified attribute from an element, optionally scrolling it into view.
         element = WebDriverWait(self.wd, 10).until(
             EC.visibility_of_element_located((self.get_how(locator), locator)))
-        if scrollInToView:
+        if scroll_into_view:
             self.wd.execute_script(
                 "arguments[0].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });", element)
             time.sleep(2)
         return element.get_attribute(attribute)
 
-    def jsXpathClick(self, locator):
+    def js_xpath_click(self, locator):
         # Performs a click on an element using JavaScript, specifically for XPATH locators.
         time.sleep(2)
         b = self.wd.find_element(By.XPATH, locator)
@@ -126,15 +126,15 @@ class StepHelper:
             texts.append(text)
         return texts
 
-    def click_element_by_text(self, locator, text, scrollIntoView=False, smartScroll=False):
+    def click_element_by_text(self, locator, text, scroll_into_view=False, smart_scroll=False):
         elements = self.get_list_of_elements(locator)
         for element in elements:
-            if smartScroll:
+            if smart_scroll:
                 # Smart scrolling: scroll a little, then check if the element is visible
                 self.wd.execute_script("arguments[0].scrollIntoView({block: 'nearest'});", element)
                 time.sleep(0.5)
             if element.text == text and element.is_displayed():
-                if scrollIntoView:
+                if scroll_into_view:
                     self.wd.execute_script("arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});",
                                            element)
                     time.sleep(1)
@@ -211,3 +211,6 @@ class StepHelper:
 
     def switch_to_default_content(self):
         self.wd.switch_to.default_content()
+
+    def click_browser_back_btn(self):
+        self.wd.back()

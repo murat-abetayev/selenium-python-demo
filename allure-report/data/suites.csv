@@ -1,2 +1,3 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Fri Jul 12 16:59:33 PDT 2024","Fri Jul 12 16:59:34 PDT 2024","853","test","test_login","","","","test_login",""
+"passed","Sat Jul 13 13:02:54 PDT 2024","Sat Jul 13 13:03:09 PDT 2024","14605","test","test_suite_1_register","","","","test_case_1_1_register",""
+"passed","Sat Jul 13 13:03:16 PDT 2024","Sat Jul 13 13:03:20 PDT 2024","3703","test","test_suite_2_login","","","","test_case_2_1_login",""
