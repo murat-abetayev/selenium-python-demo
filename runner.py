@@ -39,11 +39,11 @@ def run_tests_and_generate_report(headless=False, parallel=False, group=None, te
 
     pytest_cmd = ['pytest']
     if test_name:
-        # Use only test_name which should include the full path to the test
+        # Use only test_name which should include the full path to the tests
         pytest_cmd.append(test_name)
     else:
-        # Use the default test directory if no specific test is specified
-        pytest_cmd.append('test/')
+        # Use the default tests directory if no specific tests is specified
+        pytest_cmd.append('tests/')
 
     if headless:
         pytest_cmd.append('--headless')
@@ -71,11 +71,11 @@ if __name__ == '__main__':
     group = None
     test_name = None
 
-    # Further parsing for group, test, or other parameters
+    # Further parsing for group, tests, or other parameters
     for arg in sys.argv[2:]:
         if arg.startswith('--group='):
             group = arg.split('=')[1]
-        elif arg.startswith('--test='):
+        elif arg.startswith('--tests='):
             test_name = arg.split('=')[1]
 
     if command == 'openReport':

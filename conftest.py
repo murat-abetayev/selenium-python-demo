@@ -20,12 +20,12 @@ def pytest_addoption(parser):
 def app(request):
     headless = request.config.getoption("--headless")
     with Application(headless=headless) as app_instance:
-        yield app_instance  # Provides the Application instance to the test
+        yield app_instance  # Provides the Application instance to the tests
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """Hook to take screenshots on test failure."""
+    """Hook to take screenshots on tests failure."""
     outcome = yield
     report = outcome.get_result()
     if report.when == "call" and report.failed:
@@ -47,7 +47,7 @@ def take_screenshot(app, nodeid):
 
 
 def pytest_sessionfinish(session, exitstatus):
-    """Generate Allure report at the end of the test session if --allure-report was specified."""
+    """Generate Allure report at the end of the tests session if --allure-report was specified."""
     if session.config.getoption("--allure-report"):
         if not os.path.exists(results_dir):
             os.makedirs(results_dir)
