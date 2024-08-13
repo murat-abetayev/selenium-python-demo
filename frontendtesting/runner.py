@@ -17,7 +17,7 @@ def clear_directory(directory):
 
 
 def open_allure_report():
-    report_dir = "allure-report"
+    report_dir = "../allure-report"
     if not os.path.exists(report_dir):
         os.makedirs(report_dir)
     subprocess.call([ALLURE_COMMAND_PATH, 'serve', 'allure-results'])

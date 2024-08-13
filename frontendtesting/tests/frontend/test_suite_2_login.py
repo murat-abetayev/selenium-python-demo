@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.tc_id_2_1
+@pytest.mark.tcid_2_1
 @pytest.mark.uitests
 def test_login_with_valid_credentials(app):
     app.qaDemo.open_url()
@@ -12,7 +12,7 @@ def test_login_with_valid_credentials(app):
     app.assert_that(app.qaDemo.myAccount.account_greeting_is_visible()).is_true()
 
 
-@pytest.mark.tc_id_2_2
+@pytest.mark.tcid_2_2
 def test_login_with_valid_username_and_invalid_password(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
@@ -23,7 +23,7 @@ def test_login_with_valid_username_and_invalid_password(app):
         "Error: The password you entered for the username democustomer is incorrect. Lost your password?")
 
 
-@pytest.mark.tc_id_2_3
+@pytest.mark.tcid_2_3
 def test_login_with_invalid_credentials(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
@@ -34,7 +34,7 @@ def test_login_with_invalid_credentials(app):
         "Error: The username democustomer1 is not registered on this site.")
 
 
-@pytest.mark.tc_id_2_4
+@pytest.mark.tcid_2_4
 def test_login_without_credentials(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
@@ -45,7 +45,7 @@ def test_login_without_credentials(app):
         "Error: Username is required.")
 
 
-@pytest.mark.tc_id_2_5
+@pytest.mark.tcid_2_5
 def test_lost_your_password_link_present_and_working(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
@@ -54,7 +54,7 @@ def test_lost_your_password_link_present_and_working(app):
     app.assert_that(app.qaDemo.lostPassword.lost_password_title_visible()).is_true()
 
 
-@pytest.mark.tc_id_2_6
+@pytest.mark.tcid_2_6
 def test_user_not_logged_out_when_pressing_browser_back_button(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
@@ -66,7 +66,7 @@ def test_user_not_logged_out_when_pressing_browser_back_button(app):
     app.assert_that(app.qaDemo.myAccount.account_greeting_is_visible()).is_true()
 
 
-@pytest.mark.tc_id_2_7
+@pytest.mark.tcid_2_7
 def test_user_not_logged_in_when_pressing_browser_back_button(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()

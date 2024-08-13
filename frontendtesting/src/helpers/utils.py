@@ -7,7 +7,7 @@ import string
 class Utils:
 
     @staticmethod
-    def generate_random_email(domain='example.com', length=15):
+    def generate_random_email(domain='abetayev.me', length=15):
         characters = string.ascii_letters + string.digits
         local_part = ''.join(random.choice(characters) for i in range(length))
         return f"{local_part}@{domain}"

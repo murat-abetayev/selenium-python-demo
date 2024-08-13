@@ -1,11 +1,11 @@
-from fixture.login_reg import LoginRegister
-from fixture.lost_password import LostPassword
-from fixture.my_account import MyAccount
-from fixture.step import StepHelper
+from frontendtesting.src.pages.login_reg import LoginRegister
+from frontendtesting.src.pages.lost_password import LostPassword
+from frontendtesting.src.pages.my_account import MyAccount
+from frontendtesting.src.pages.step import StepHelper
 
 
 class QaDemo:
-    my_account_link = "//ul[@id='primary-menu']//a[text()='My account']"
+    my_account_link = "//ul[@class='nav-menu']//a[text()='My account']"
 
     def __init__(self, app):
         self.app = app
@@ -15,7 +15,7 @@ class QaDemo:
         self.myAccount = MyAccount(self.step, self.wd)
         self.lostPassword = LostPassword(self.step, self.wd)
 
-    def open_url(self, url='https://abetayev.me/qa-demo/'):
+    def open_url(self, url='http://192.168.110.155/demostore/'):
         self.wd.get(url)
 
     def click_my_account_link(self):

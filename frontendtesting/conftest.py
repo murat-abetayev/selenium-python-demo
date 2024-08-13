@@ -2,7 +2,7 @@ import os
 import pytest
 import allure
 from allure_commons.types import AttachmentType
-from fixture.application import Application  # Ensure the import path is correct
+from frontendtesting.src.pages.application import Application  # Ensure the import path is correct
 import subprocess
 
 # Define the base directory for reports relative to this file's location

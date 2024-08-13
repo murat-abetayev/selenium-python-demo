@@ -1,6 +1,6 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 
-from fixture.step import StepHelper
+from frontendtesting.src.pages.step import StepHelper
 
 
 class LostPassword:

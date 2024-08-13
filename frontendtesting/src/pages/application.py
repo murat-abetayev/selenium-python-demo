@@ -4,9 +4,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from assertpy import assert_that
 
-from fixture.qa_demo import QaDemo
-from fixture.step import StepHelper
-from helpers.utils import Utils
+from frontendtesting.src.pages.qa_demo import QaDemo
+from frontendtesting.src.pages.step import StepHelper
+from frontendtesting.src.helpers.utils import Utils
 
 
 class Application:
