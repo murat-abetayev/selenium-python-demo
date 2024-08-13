@@ -6,8 +6,7 @@ import pytest
 def test_login_with_valid_credentials(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
-    app.qaDemo.loginReg.set_username('democustomer')
-    app.qaDemo.loginReg.set_password('dEmOcstmr546')
+    app.qaDemo.loginReg.enter_valid_credentials()
     app.qaDemo.loginReg.click_login_button()
     app.assert_that(app.qaDemo.myAccount.account_greeting_is_visible()).is_true()
 
@@ -16,8 +15,7 @@ def test_login_with_valid_credentials(app):
 def test_login_with_valid_username_and_invalid_password(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
-    app.qaDemo.loginReg.set_username('democustomer')
-    app.qaDemo.loginReg.set_password('dEmOcstmr547')
+    app.qaDemo.loginReg.enter_invalid_password()
     app.qaDemo.loginReg.click_login_button()
     app.assert_that(app.qaDemo.loginReg.get_wrong_password_message_text()).is_equal_to(
         "Error: The password you entered for the username democustomer is incorrect. Lost your password?")
@@ -27,8 +25,7 @@ def test_login_with_valid_username_and_invalid_password(app):
 def test_login_with_invalid_credentials(app):
     app.qaDemo.open_url()
     app.qaDemo.click_my_account_link()
-    app.qaDemo.loginReg.set_username('democustomer1')
-    app.qaDemo.loginReg.set_password('dEmOcstmr547')
+    app.qaDemo.loginReg.enter_invalid_credentials()
     app.qaDemo.loginReg.click_login_button()
     app.assert_that(app.qaDemo.loginReg.get_wrong_password_message_text()).contains(
         "Error: The username democustomer1 is not registered on this site.")

@@ -1,5 +1,6 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 from frontendtesting.src.pages.step import StepHelper
+from frontendtesting.src.utilities.credentialsUtility import CredentialsUtility
 
 
 class LoginRegister:
@@ -14,12 +15,25 @@ class LoginRegister:
     def __init__(self, step: StepHelper, wd: WebDriver):
         self.step = step
         self.wd = wd
+        self.demo_creds = CredentialsUtility.get_demo_customer_credentials()
 
-    def set_username(self, username):
+    def set_username(self, username=None):
         self.step.input_text(self.username_field, username)
 
-    def set_password(self, password):
+    def set_password(self, password=None):
         self.step.input_text(self.password_field, password)
+
+    def enter_valid_credentials(self):
+        self.set_username(self.demo_creds['demo_customer'])
+        self.set_password(self.demo_creds['demo_cust_password'])
+
+    def enter_invalid_password(self):
+        self.set_username(self.demo_creds['demo_customer'])
+        self.set_password('dEmOcstmr547')
+
+    def enter_invalid_credentials(self):
+        self.set_username('democustomer1')
+        self.set_password('dEmOcstmr547')
 
     def click_login_button(self):
         self.step.click_on_element(self.login_button)
